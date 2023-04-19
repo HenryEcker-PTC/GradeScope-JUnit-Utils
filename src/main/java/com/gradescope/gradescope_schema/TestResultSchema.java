@@ -65,7 +65,10 @@ public class TestResultSchema implements JSONable {
         if (GradeScopeSchemaUtils.isDefined(this.number)) {
             json.put("number", this.number);
         }
-        json.put("output", this.outputSB.toString());
+        String output = this.outputSB.toString();
+        if (GradeScopeSchemaUtils.isDefined(output)) {
+            json.put("output", output);
+        }
         if (GradeScopeSchemaUtils.isDefined(this.outputFormat)) {
             json.put("output_format", this.outputFormat);
         }
