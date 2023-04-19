@@ -7,23 +7,46 @@ import java.util.stream.Collectors;
 
 public class GradeScopeResultSchema implements JSONable {
     private String output;
+    private Double score;
+    private Long executionTime;
     private GradeScopeOutputFormat outputFormat;
     private GradeScopeOutputFormat testOutputFormat;
     private GradeScopeOutputFormat testNameFormat;
     private GradeScopeVisibility visibility;
     private GradeScopeVisibility stdoutVisibility;
-    private Long executionTime;
     private List<JSONObject> tests;
 
     public GradeScopeResultSchema() {
+        this.score = null;
+        this.executionTime = null;
         this.output = null;
         this.outputFormat = null;
         this.testOutputFormat = null;
         this.testNameFormat = null;
         this.visibility = null;
         this.stdoutVisibility = null;
-        this.executionTime = null;
         this.tests = null;
+    }
+
+
+    public GradeScopeResultSchema withScore(Double score) {
+        this.score = score;
+        return this;
+    }
+
+    public GradeScopeResultSchema withoutScore() {
+        this.score = null;
+        return this;
+    }
+
+    public GradeScopeResultSchema withExecutionTime(Long executionTime) {
+        this.executionTime = executionTime;
+        return this;
+    }
+
+    public GradeScopeResultSchema withoutExecutionTime() {
+        this.executionTime = null;
+        return this;
     }
 
 
@@ -87,16 +110,6 @@ public class GradeScopeResultSchema implements JSONable {
         return this;
     }
 
-    public GradeScopeResultSchema withExecutionTime(long executionTime) {
-        this.executionTime = executionTime;
-        return this;
-    }
-
-    public GradeScopeResultSchema withoutExecutionTime() {
-        this.executionTime = null;
-        return this;
-    }
-
     public GradeScopeResultSchema withTests(List<TestResultSchema> testResultSchemas) {
         this.tests = testResultSchemas.stream()
                 .map(TestResultSchema::toJSON)
@@ -111,7 +124,12 @@ public class GradeScopeResultSchema implements JSONable {
 
     public JSONObject toJSON() {
         JSONObject json = new JSONObject();
-        json.put("execution_time", this.executionTime);
+        if (GradeScopeSchemaUtils.isDefined(this.score)) {
+            json.put("score", this.score);
+        }
+        if (GradeScopeSchemaUtils.isDefined(this.executionTime)) {
+            json.put("execution_time", this.executionTime);
+        }
         if (GradeScopeSchemaUtils.isDefined(this.output)) {
             json.put("output", this.output);
         }
