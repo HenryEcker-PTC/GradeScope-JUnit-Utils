@@ -1,6 +1,7 @@
 package com.gradescope.grader;
 
 import com.gradescope.gradescope_schema.GradeScopeOutputFormat;
+import com.gradescope.gradescope_schema.GradeScopeStatus;
 import com.gradescope.gradescope_schema.GradeScopeVisibility;
 
 import java.lang.annotation.ElementType;
@@ -12,6 +13,8 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD})
 public @interface GradedTest {
     double max_score();
+
+    GradeScopeStatus status() default GradeScopeStatus.undefined;
 
     String name();
 

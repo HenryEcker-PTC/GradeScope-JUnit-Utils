@@ -4,8 +4,9 @@ import com.gradescope.grader.GradedTest;
 import org.json.JSONObject;
 
 public class TestResultSchema implements JSONable {
-    private double score;
-    private final double maxScore;
+    private Double score;
+    private final Double maxScore;
+    private final GradeScopeStatus status;
     private final String name;
     private final GradeScopeOutputFormat nameFormat;
     private final String number;
@@ -16,7 +17,8 @@ public class TestResultSchema implements JSONable {
 
 
     public TestResultSchema(
-            double maxScore,
+            Double maxScore,
+            GradeScopeStatus status,
             String name,
             GradeScopeOutputFormat nameFormat,
             String number,
@@ -24,7 +26,9 @@ public class TestResultSchema implements JSONable {
             String[] tags,
             GradeScopeVisibility visibility
     ) {
+        this.score = null;
         this.maxScore = maxScore;
+        this.status = status;
         this.name = name;
         this.nameFormat = nameFormat;
         this.number = number;
@@ -37,6 +41,7 @@ public class TestResultSchema implements JSONable {
     public TestResultSchema(GradedTest testAnnotation) {
         this(
                 testAnnotation.max_score(),
+                testAnnotation.status(),
                 testAnnotation.name(),
                 testAnnotation.name_format(),
                 testAnnotation.number(),
@@ -56,9 +61,18 @@ public class TestResultSchema implements JSONable {
 
     public JSONObject toJSON() {
         JSONObject json = new JSONObject();
-        json.put("score", this.score);
-        json.put("max_score", this.maxScore);
-        json.put("name", this.name);
+        if (GradeScopeSchemaUtils.isDefined(this.score)) {
+            json.put("score", this.score);
+        }
+        if (GradeScopeSchemaUtils.isDefined(this.maxScore)) {
+            json.put("max_score", this.maxScore);
+        }
+        if (GradeScopeSchemaUtils.isDefined(this.status)) {
+            json.put("status", this.status);
+        }
+        if (GradeScopeSchemaUtils.isDefined(this.name)) {
+            json.put("name", this.name);
+        }
         if (GradeScopeSchemaUtils.isDefined(this.nameFormat)) {
             json.put("name_format", this.nameFormat);
         }

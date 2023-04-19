@@ -19,6 +19,10 @@ public class GradeScopeSchemaUtils {
         return isNotNull(gv) && gv != GradeScopeVisibility.undefined;
     }
 
+    public static boolean isDefined(GradeScopeStatus gs) {
+        return isNotNull(gs) && gs != GradeScopeStatus.undefined;
+    }
+
     public static boolean isDefined(String s) {
         return isNotNull(s) && !s.isEmpty() && !s.isBlank();
     }
