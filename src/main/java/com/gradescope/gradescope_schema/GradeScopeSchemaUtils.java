@@ -1,6 +1,6 @@
 package com.gradescope.gradescope_schema;
 
-import java.util.List;
+import java.util.Collection;
 
 public class GradeScopeSchemaUtils {
     public static boolean isNotNull(Object o) {
@@ -27,11 +27,11 @@ public class GradeScopeSchemaUtils {
         return isNotNull(s) && !s.isEmpty() && !s.isBlank();
     }
 
-    public static boolean isDefined(String[] s) {
-        return isNotNull(s) && s.length > 0;
+    public static <T> boolean isDefined(T[] arr) {
+        return isNotNull(arr) && arr.length > 0;
     }
 
-    public static boolean isDefined(@SuppressWarnings("rawtypes") List lst) {
-        return isNotNull(lst) && lst.size() > 0;
+    public static <T> boolean isDefined(Collection<T> c) {
+        return isNotNull(c) && c.size() > 0;
     }
 }
