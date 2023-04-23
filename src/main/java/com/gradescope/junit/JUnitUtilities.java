@@ -36,8 +36,7 @@ public class JUnitUtilities {
             if (isStoppingFrame(frame))
                 break;
         }
-        String noTrailingWhitespace = sb.toString().replaceFirst("\\s+$", "");
-        return noTrailingWhitespace;
+        return sb.toString().replaceFirst("\\s+$", "");
 	}
 
     /** Returns a string representation of the source position indicated by FRAME. */
@@ -64,9 +63,7 @@ public class JUnitUtilities {
             Class<?> cls = Class.forName(frame.getClassName ());
             Method mthd = cls.getMethod(frame.getMethodName ());
             return mthd.getAnnotation(Test.class) != null;
-        } catch (ClassNotFoundException e) {
-            return false;
-        } catch (NoSuchMethodException e) {
+        } catch (ClassNotFoundException | NoSuchMethodException e) {
             return false;
         }
     }
