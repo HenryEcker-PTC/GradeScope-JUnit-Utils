@@ -26,7 +26,8 @@ public class TestResultSchema implements JSONable {
             String[] tags,
             GradeScopeVisibility visibility
     ) {
-        this.score = null;
+        /* By default, every test passes. */
+        this.score = maxScore;
         this.maxScore = maxScore;
         this.status = status;
         this.name = name;
