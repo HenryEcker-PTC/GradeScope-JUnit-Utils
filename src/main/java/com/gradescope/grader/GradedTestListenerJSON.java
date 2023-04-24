@@ -1,8 +1,8 @@
 package com.gradescope.grader;
 
 import com.gradescope.gradescope_schema.GradeScopeResultSchema;
+import com.gradescope.gradescope_schema.GradedTest;
 import com.gradescope.gradescope_schema.TestResultSchema;
-import com.gradescope.junit.JUnitUtilities;
 import org.junit.runner.Description;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;

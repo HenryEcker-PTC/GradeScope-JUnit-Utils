@@ -1,4 +1,4 @@
-package com.gradescope.junit;
+package com.gradescope.grader;
 
 import org.junit.Test;
 import org.junit.runner.notification.Failure;
@@ -6,7 +6,7 @@ import org.junit.runner.notification.Failure;
 import java.lang.reflect.Method;
 
 
-public class JUnitUtilities {
+class JUnitUtilities {
     /**
      * Converts a JUnit failure object into a string.
      */

@@ -1,4 +1,4 @@
-package com.gradescope.grader;
+package com.gradescope.gradescope_schema;
 
 import com.gradescope.gradescope_schema.GradeScopeOutputFormat;
 import com.gradescope.gradescope_schema.GradeScopeStatus;

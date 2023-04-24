@@ -1,6 +1,5 @@
 package com.gradescope.gradescope_schema;
 
-import com.gradescope.grader.GradedTest;
 import org.json.JSONObject;
 
 public class TestResultSchema implements JSONable {
